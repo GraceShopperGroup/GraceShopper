@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "graceshopper",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "A fun lil Amazon clone",
   "engines": {
     "node": ">= 7.0.0"
   },
