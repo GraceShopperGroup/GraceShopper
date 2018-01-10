@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+// OB/DK: consider validations (not urgent)
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING
@@ -8,6 +9,7 @@ const Product = db.define('product', {
   description: {
     type: Sequelize.TEXT
   },
+  // OB/DK: consider storing as an INTEGER (to help with rounding errors)
   price: {
     type: Sequelize.DECIMAL
   },
@@ -24,5 +26,7 @@ const Product = db.define('product', {
     }
   }
 })
+
+// OB/DK: consider making a product.getAverageRating instance method
 
 module.exports = Product
