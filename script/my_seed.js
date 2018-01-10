@@ -2,7 +2,7 @@ const chance = require('chance')(123);
 const Promise = require('bluebird');
 
 const db = require('../server/db')
-const { User, Product, Order, OrderProduct, Review } = require('../server/db/models');
+const { User, Product, Order, OrderProduct, Review, Category } = require('../server/db/models');
 
 const numUsers = 10;
 const numProducts = 10;
@@ -106,6 +106,11 @@ function generateOrderProducts (createdProducts, createdOrders) {
   return doTimes(numOrders, () => randOrderProduct(createdProducts, createdOrders));
 }
 
+const categories = ['sneakers', 'boots', 'sandals'];
+
+function generateCategories () {
+  return doTimes(categories.length, () => Category.build({ name: categories.pop() }))
+}
 
 //SAVE CREATED STUFF
 function createUsers () {
@@ -124,14 +129,19 @@ function createOrderProducts (createdProducts, createdOrders) {
   return Promise.map(generateOrderProducts(createdProducts, createdOrders), orderProd => orderProd.save());
 }
 
+function createCategories () {
+  return Promise.map(generateCategories(), category => category.save());
+}
+
 function seed () {
-  return createUsers()
+  return createCategories()
+  .then(() => createUsers())
   .then(createdUsers => createOrders(createdUsers))
   .then(orders => {
     createdOrders = orders
     return createProducts()
   })
-  .then(createdProducts => createOrderProducts(createdProducts, createdOrders)); 
+  .then(createdProducts => createOrderProducts(createdProducts, createdOrders));
 }
 
 console.log('Syncing database');
