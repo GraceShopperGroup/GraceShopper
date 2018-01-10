@@ -15,7 +15,11 @@ const Main = (props) => {
 
   return (
     <div>
+<<<<<<< HEAD
       <h1>GRACE SHOPPER</h1>
+=======
+      <h1>Grace Shopper</h1>
+>>>>>>> 1828e0eaaef28f57e3b4957030013e584f7b67ab
       <nav>
         {
           isLoggedIn
