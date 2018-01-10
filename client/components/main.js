@@ -15,7 +15,7 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>GRACE SHOPPER</h1>
+      <h1>Grace Shopper</h1>
       <nav>
         {
           isLoggedIn
