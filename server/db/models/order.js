@@ -4,7 +4,7 @@ const db = require('../db')
 const Order = db.define('order', {
   products: {
     type: Sequelize.STRING,
-    get: function() {
+    get: function () {
       return JSON.parse(this.getDataValue('products'));
     },
     set: function (val) {
