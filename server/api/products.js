@@ -21,6 +21,20 @@ router.get('/:id', (req, res, next) => {
         .catch(next)
 });
 
+router.put('/:id', (req, res, next) => {
+    if (req.user.isAdmin)
+        Product.update(req.body)
+            .then(product => res.json(product))
+            .catch(next)
+    else next(err)
+})
 
+router.delete('/:id', (req, res, next) => {
+    if (req.user.isAdmin)
+        Product.destroy({ where: { id: req.params.id } })
+            .then(() => req.status(204))
+            .catch(next)
+    else next(err)
+})
 
 module.exports = router;
