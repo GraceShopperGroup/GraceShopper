@@ -7,3 +7,11 @@ router.get('/', (req, res, next) => {
     .then(categories => res.json(categories))
     .catch(next)
 })
+
+router.post('/', (req, res, next) => {
+  if (req.user.isAdmin)
+    Category.create(req.body)
+      .then(categories => res.status(201).json(categories))
+      .catch(next);
+  else next(err);
+})
