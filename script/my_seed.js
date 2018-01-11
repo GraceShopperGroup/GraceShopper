@@ -2,7 +2,7 @@ const chance = require('chance')(123);
 const Promise = require('bluebird');
 
 const db = require('../server/db')
-const { User, Product, Order, OrderProduct, Review } = require('../server/db/models');
+const { User, Product, Order, OrderProduct, Review, Category, ProductCategory } = require('../server/db/models');
 
 const numUsers = 10;
 const numProducts = 10;
@@ -41,17 +41,13 @@ function randName () {
 
 var sneakers = ['Adidas', 'Nike', 'Converse', 'Puma', 'Yeezy', 
         'Jordans', 'Doc Martens', 'Colt 45s', '2 Zigzags', 'Toms']
-function randProduct () {
-  const numPars = chance.natural({
-    min: 1,
-    max: 2
-  });
+function randProduct() {
   return Product.build({
     name: sneakers.pop(),
     price: chance.integer({ min: 0, max: 1000 }),
     description: randName(),
     invenQuant: chance.integer({ min: 0, max: 10 }),
-    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Black_Converse_sneakers.JPG/1200px-Black_Converse_sneakers.JPG"
+    imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Black_Converse_sneakers.JPG/1200px-Black_Converse_sneakers.JPG",
   });
 }
 
@@ -62,16 +58,27 @@ function randOrder (createdUsers) {
   });
 }
 
-function randOrderProduct (createdProducts, createdOrders) {
-  const product = chance.pick(createdProducts)
-  const order = chance.pick(createdOrders)
-  return OrderProduct.build({
-    productId: product.id,
-    orderId: order.id,
-    priceAtPurchase: product.price,
-    quantity: chance.integer({ min: 1, max: 4 })
-  })
-}
+const orderProducts = [
+  { orderId: 1, productId: 1, quantity: 1 },
+  { orderId: 1, productId: 4, quantity: 2 },
+  { orderId: 2, productId: 3, quantity: 5 },
+  { orderId: 3, productId: 3, quantity: 1 },
+  { orderId: 5, productId: 6, quantity: 3 },
+  { orderId: 6, productId: 4, quantity: 2 }
+]
+
+const productCategories = [
+  { productId: 1, categoryId: 1 },
+  { productId: 2, categoryId: 2 },
+  { productId: 3, categoryId: 3 },
+  { productId: 4, categoryId: 1 },
+  { productId: 5, categoryId: 1 },
+  { productId: 6, categoryId: 3 },
+  { productId: 7, categoryId: 1 },
+  { productId: 8, categoryId: 1 },
+  { productId: 9, categoryId: 2 },
+  { productId: 10, categoryId: 3 },
+]
 
 //GENERATE RAND
 function generateUsers () {
@@ -94,7 +101,7 @@ function generateUsers () {
   return users;
 }
 
-function generateProducts () {
+function generateProducts() {
   return doTimes(numProducts, () => randProduct());
 }
 
@@ -102,10 +109,23 @@ function generateOrders (createdUsers) {
   return doTimes(numOrders, () => randOrder(createdUsers));
 }
 
-function generateOrderProducts (createdProducts, createdOrders) {
-  return doTimes(numOrders, () => randOrderProduct(createdProducts, createdOrders));
+function generateOrderProducts (createdProducts) {
+  return orderProducts.map(orderProd => {
+    let product = createdProducts.find(prod => prod.id === orderProd.productId);
+    orderProd.priceAtPurchase = product.price;
+    return OrderProduct.build(orderProd)
+  });
 }
 
+function generateProductCat () {
+  return productCategories.map(prodCat => ProductCategory.build(prodCat))
+}
+
+const categories = ['sneakers', 'boots', 'sandals'];
+
+function generateCategories () {
+  return doTimes(categories.length, () => Category.build({ name: categories.pop() }))
+}
 
 //SAVE CREATED STUFF
 function createUsers () {
@@ -120,18 +140,26 @@ function createOrders (createdUsers) {
   return Promise.map(generateOrders(createdUsers), order => order.save());
 }
 
-function createOrderProducts (createdProducts, createdOrders) {
-  return Promise.map(generateOrderProducts(createdProducts, createdOrders), orderProd => orderProd.save());
+function createOrderProducts (createdProducts) {
+  return Promise.map(generateOrderProducts(createdProducts), orderProd => orderProd.save());
+}
+
+function createCategories () {
+  return Promise.map(generateCategories(), category => category.save());
+}
+
+function createProductCategories () {
+  return Promise.map(generateProductCat(), prodCat => prodCat.save());
 }
 
 function seed () {
-  return createUsers()
-  .then(createdUsers => createOrders(createdUsers))
-  .then(orders => {
-    createdOrders = orders
-    return createProducts()
-  })
-  .then(createdProducts => createOrderProducts(createdProducts, createdOrders)); 
+  return Promise.all( [createCategories(), createUsers(), createProducts()] )
+    .then( ([createdCategories, createdUsers, createdProducts]) => {
+      return createOrders(createdUsers)
+      .then(() => createOrderProducts(createdProducts))
+      .then(() => createProductCategories())
+      .catch(err => console.log(err));
+    })
 }
 
 console.log('Syncing database');
