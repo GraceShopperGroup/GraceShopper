@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-//Stateless Component
-function SideBar (props) {
+function HPProducts (props) {
   return (
     <div>
       <h6>Categories</h6>
@@ -23,9 +22,9 @@ function SideBar (props) {
 
 const mapStateToProps = function(state) {
   return {
-    categories: state.categories
-  };
+    products: state.products
+  }
 }
 
-const SideBarContainer = connect(mapStateToProps)(SideBar)
-export default SideBarContainer
+const HPProductsContainer = connect(mapStateToProps)(HPProducts)
+export default HPProductsContainer;
