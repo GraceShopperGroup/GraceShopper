@@ -10,3 +10,7 @@ import HomePage from './allproducts'
 export {HomePage}
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+import SingleProduct from './singleProduct'
+export {SingleProduct}
+import Cart from './cart'
+export {Cart}

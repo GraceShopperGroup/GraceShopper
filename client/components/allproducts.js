@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import { withRouter, NavLink } from 'react-router-dom';
 
 function HomePage (props) {
   //Don't forget if/else logic to check if a user is an admin
@@ -12,9 +13,11 @@ function HomePage (props) {
         props.products.map(product => {
           return (
             <div key={product.id}>
-              <h2>{product.name}</h2>
-              <img key={product.id} src={product.imgUrl} />
-              <p>{product.description}</p>
+              <NavLink to={`/products/${product.id}`}>
+                <h2>{product.name}</h2>
+                <img key={product.id} src={product.imgUrl} />
+                <p>{product.description}</p>
+              </NavLink>
             </div>
           )
         })
@@ -31,5 +34,5 @@ const mapStateToProps = function(state) {
   }
 }
 
-const HPProductsContainer = connect(mapStateToProps)(HomePage)
+const HPProductsContainer = withRouter(connect(mapStateToProps)(HomePage))
 export default HPProductsContainer;
