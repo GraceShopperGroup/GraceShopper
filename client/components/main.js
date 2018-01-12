@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import SideBar from './sidebar'
+import HomePage from './allproducts'
 
 /**
  * COMPONENT
@@ -34,7 +35,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
-      {/* <SideBar /> */}
+      <SideBar />
       {children}
     </div>
   )

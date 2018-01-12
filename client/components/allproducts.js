@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 
 function HPProducts (props) {
@@ -8,13 +7,13 @@ function HPProducts (props) {
   // We should have a component AddProductPage
   return (
     <div>
-      <h1>Hit Compon</h1>
+      <h1>Hit Component</h1>
       {
         props.products.map(product => {
           return (
-            <div key="hpContainerDiv">
+            <div key="">
+              <h2>{product.name}</h2>
               <img key={product.id} src={product.imgUrl} />
-              <h6>{product.name}</h6>
               <p>{product.description}</p>
             </div>
           )
