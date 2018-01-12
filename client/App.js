@@ -3,8 +3,14 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
-import {me} from './store'
+
+//Import Components
+import {Main, Login, Signup, UserHome, HomePage} from './components'
+
+
+//Important! Import all thunks here
+import {me, fetchCategories, fetchProducts} from './store'
+import { homedir } from 'os';
 
 /**
  * COMPONENT
@@ -16,7 +22,6 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn} = this.props
-
     return (
       <Router history={history}>
         <Main>
@@ -24,6 +29,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/" component={HomePage} />
             {
               isLoggedIn &&
                 <Switch>
@@ -53,8 +59,12 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
+    //Add all of the initial thunks in here
+    //(Tells the thunks to fire and populate the intial store upon site load)
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchCategories())
+      dispatch(fetchProducts())
     }
   }
 }

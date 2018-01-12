@@ -14,22 +14,16 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  invenQuant: {
+  inventoryQuant: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     validate: {
       min: 0
     }
   },
-  category: {
-    type: Sequelize.STRING
-  },
   imgUrl: {
     type: Sequelize.STRING,
-    defaultValue: '/images/crying-jordan.jpg',
-    validate: {
-      isUrl: true
-    }
+    defaultValue: '/images/crying-jordan.jpg'
   }
 })
 
