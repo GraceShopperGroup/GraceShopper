@@ -46,7 +46,7 @@ function randProduct() {
     name: sneakers.pop(),
     price: chance.integer({ min: 0, max: 1000 }),
     description: randName(),
-    invenQuant: chance.integer({ min: 0, max: 10 }),
+    inventoryQuant: chance.integer({ min: 0, max: 10 }),
     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Black_Converse_sneakers.JPG/1200px-Black_Converse_sneakers.JPG",
   });
 }
