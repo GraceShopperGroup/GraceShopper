@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 
-function HPProducts (props) {
+function HomePage (props) {
   //Don't forget if/else logic to check if a user is an admin
   //If they are the view should also include a button to add a new product
   // We should have a component AddProductPage
@@ -11,7 +11,7 @@ function HPProducts (props) {
       {
         props.products.map(product => {
           return (
-            <div key="">
+            <div key={product.id}>
               <h2>{product.name}</h2>
               <img key={product.id} src={product.imgUrl} />
               <p>{product.description}</p>
@@ -31,5 +31,5 @@ const mapStateToProps = function(state) {
   }
 }
 
-const HPProductsContainer = connect(mapStateToProps)(HPProducts)
+const HPProductsContainer = connect(mapStateToProps)(HomePage)
 export default HPProductsContainer;

@@ -3,8 +3,10 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 export {default as Main} from './main'
 export {SideBar} from './sidebar'
-export {HomePage} from './allproducts'
+import HomePage from './allproducts'
+export {HomePage}
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'

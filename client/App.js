@@ -10,6 +10,7 @@ import {Main, Login, Signup, UserHome, HomePage} from './components'
 
 //Important! Import all thunks here
 import {me, fetchCategories, fetchProducts} from './store'
+import { homedir } from 'os';
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/" component={HomePage} />
             {
               isLoggedIn &&
                 <Switch>

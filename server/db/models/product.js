@@ -21,9 +21,6 @@ const Product = db.define('product', {
       min: 0
     }
   },
-  category: {
-    type: Sequelize.STRING
-  },
   imgUrl: {
     type: Sequelize.STRING,
     defaultValue: '/images/crying-jordan.jpg',
