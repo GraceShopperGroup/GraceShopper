@@ -5,5 +5,6 @@ module.exports = router
 router.get('/', (req, res, next) => {
   Category.findAll({})
     .then(categories => res.json(categories))
+    .then(console.log('Hit Route'))
     .catch(next)
 })

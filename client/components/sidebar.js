@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {fetchCategories} from '../store/reducers/categories'
 
 //Stateless Component
-function SideBar (props) {
+const SideBar = (props) => {
   return (
     <div>
       <h6>Categories</h6>
@@ -26,6 +27,7 @@ const mapStateToProps = function(state) {
     categories: state.categories
   };
 }
+
 
 const SideBarContainer = connect(mapStateToProps)(SideBar)
 export default SideBarContainer

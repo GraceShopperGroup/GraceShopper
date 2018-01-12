@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
+import SideBar from './sidebar'
 
 /**
  * COMPONENT
@@ -12,6 +13,7 @@ import { logout } from '../store'
  */
 const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
+  console.log(props)
 
   return (
     <div>
@@ -32,6 +34,7 @@ const Main = (props) => {
         }
       </nav>
       <hr />
+      {/* <SideBar /> */}
       {children}
     </div>
   )
