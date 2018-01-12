@@ -14,7 +14,6 @@ import HomePage from './allproducts'
  */
 const Main = (props) => {
   const { children, handleClick, isLoggedIn } = props
-  console.log(props)
 
   return (
     <div>
