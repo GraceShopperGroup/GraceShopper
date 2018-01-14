@@ -52,12 +52,10 @@ const Main = (props) => {
       </nav>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-3 sidebar">
-            <SideBar />
-          </div>
-          <div className="col-md-9 offset-md-3 content">
+          <SideBar />
+          <main className="col-md-9 offset-md-3 content">
             {children}
-          </div>
+          </main>
         </div>
       </div>
     </div >

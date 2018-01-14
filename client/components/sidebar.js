@@ -6,17 +6,17 @@ import { fetchCategories } from '../store/reducers/categories'
 //Stateless Component
 const SideBar = (props) => {
   return (
-    <div>
+    <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
       <h4>Categories</h4>
-      <ul>
+      <ul className="nav nav-pills flex-column">
         {props.categories.map((category) => {
           return (
-            <li key={category.id}>{category.name}</li>
+            <li key={category.id} className="nav-item">{category.name}</li>
           )
         })
         }
       </ul>
-    </div>
+    </nav>
   )
 }
 
