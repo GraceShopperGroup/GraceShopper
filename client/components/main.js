@@ -5,6 +5,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import SideBar from './sidebar'
 import HomePage from './allproducts'
+import Cart from './cart'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ const Main = (props) => {
               <Link to="/signup">Sign Up</Link>
             </div>
         }
+       <Link to="/cart"> View Cart </Link>
       </nav>
       <hr />
       <SideBar />

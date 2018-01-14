@@ -1,38 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
+import { postCart } from '../store'
 
 function SingleProduct (props) {
-  return (
+  const { product, addToCart } = props;
+  return (product) ?
+  (
     <div>
       {
-        props.products.map(product => {
-          return (
-            <div key="spContainerDiv">
-              <img key={product.id} src={product.imgUrl} />
-              <h6>{product.name}</h6>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
-              <p>{product.inventoryQuant}</p>
+        <div key="spContainerDiv">
+          <img key={product.id} src={product.imgUrl} />
+          <h6>{product.name}</h6>
+          <p>{product.description}</p>
+          <p>{product.price}</p>
+          <p>{product.inventoryQuant}</p>
 
-              {/* Make the ability to add things to cart */}
-              <button>Add to Cart</button>
-              {/* ****** */}
-            </div>
-          )
-        })
+          {/* Make the ability to add things to cart */}
+          <button onClick={() => addToCart(product)}>Add to Cart</button>
+          {/* ****** */}
+        </div>
       }
     </div>
-  )
+  ) :
+  ( <div> </div> )
 }
 
 //Connection to the Redux Store
 
-const mapStateToProps = function(state) {
+const mapStateToProps = function(state, ownProps) {
   return {
-    products: state.products
+    product: state.products.find(prod => prod.id === +ownProps.match.params.productId)
   }
 }
 
-const SingleProductContainer = connect(mapStateToProps)(SingleProduct)
+const mapDispatchToProps = function(dispatch) {
+  return {
+    addToCart (prod) {
+      dispatch(postCart(prod))
+    }
+  }
+}
+
+const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 export default SingleProductContainer;

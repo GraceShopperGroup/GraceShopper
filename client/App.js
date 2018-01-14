@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 import history from './history'
 
 //Import Components
-import {Main, Login, Signup, UserHome, HomePage} from './components'
+import {Main, Login, Signup, UserHome, HomePage, SingleProduct, Cart} from './components'
 
 
 //Important! Import all thunks here
-import {me, fetchCategories, fetchProducts} from './store'
+import {me, fetchCategories, fetchProducts, fetchCart} from './store'
 import { homedir } from 'os';
 
 /**
@@ -27,8 +27,10 @@ class Routes extends Component {
         <Main>
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/cart" component={Cart} />
             <Route path="/" component={HomePage} />
             {
               isLoggedIn &&
@@ -65,6 +67,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(fetchCategories())
       dispatch(fetchProducts())
+      dispatch(fetchCart())
     }
   }
 }
