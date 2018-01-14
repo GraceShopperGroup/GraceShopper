@@ -17,7 +17,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/', (req, res, next) => {
-  let id = req.body;
+  let id = req.body.id;
   req.session.cart[id].quantity--;
   if (req.session.cart[id].quantity === 0) delete req.session.cart[id];
 

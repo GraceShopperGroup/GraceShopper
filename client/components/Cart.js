@@ -4,16 +4,17 @@ import { removeItem } from '../store'
 
 //Stateless Component
 const Cart = (props) => {
+  const { cart, removeFromCart } = props;
   return (
     <div>
       <h6>Cart</h6>
       <ul>
       {
-        Object.keys(props.cart).map((id) => {
+        Object.keys(cart).map((id) => {
           return (
-            <li key={id}>Product Name: {props.cart[id].name} Quantity:{props.cart[id].quantity}
-                  Price: {props.cart[id].quantity * props.cart[id].price}
-                  <button onClick={() => removeItem(id)}>X</button>
+            <li key={id}>{cart[id].name} Quantity:{cart[id].quantity}
+                  Price: {cart[id].quantity * cart[id].price}
+                  <button onClick={() => removeFromCart(id)}>X</button>
             </li>
           )
         })
@@ -33,7 +34,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    removeItem (id) {
+    removeFromCart (id) {
       dispatch(removeItem(id))
     }
   }

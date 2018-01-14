@@ -57,7 +57,9 @@ export function postCart (item) {
 
 export function removeItem (id) {
   return function thunk(dispatch) {
-    return axios.delete('/api/cart', id)
+    return axios.delete('/api/cart', {
+      data: { id }
+    })
     .then(res => res.data)
     .then(newCart => dispatch(removeFromCart(newCart)))
     .catch(err => console.log(err))
