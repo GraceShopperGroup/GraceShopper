@@ -10,7 +10,7 @@ const Cart = (props) => {
       <ul>
       {Object.keys(props.cart).map((id) => {
         return (
-          <li key={id}>Name: {props.cart[id].name} Quantity:{props.cart[id].quantity}
+          <li key={id}>Product Name: {props.cart[id].name} Quantity:{props.cart[id].quantity}
                 Price: {props.cart[id].quantity * props.cart[id].price}</li>
         )
       } )
