@@ -1,21 +1,7 @@
-body {
-  font-family: sans-serif;
+.navbar-nav {
+  margin-top: 10px;
 }
 
-a {
-  text-decoration: none;
-}
-
-label {
-  display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
+.navbar-collapse .navbar-brand{
+  margin-left: 100px;
 }

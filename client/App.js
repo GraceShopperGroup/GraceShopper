@@ -1,27 +1,27 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Route, Switch, Router} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 
 //Import Components
-import {Main, Login, Signup, UserHome, HomePage, SingleProduct, Cart} from './components'
+import { Main, Login, Signup, UserHome, HomePage, SingleProduct, Cart } from './components'
 
 
 //Important! Import all thunks here
-import {me, fetchCategories, fetchProducts, fetchCart} from './store'
+import { me, fetchCategories, fetchProducts, fetchCart } from './store'
 import { homedir } from 'os';
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props
     return (
       <Router history={history}>
         <Main>
@@ -34,10 +34,10 @@ class Routes extends Component {
             <Route path="/" component={HomePage} />
             {
               isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                </Switch>
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/home" component={UserHome} />
+              </Switch>
             }
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
@@ -63,7 +63,7 @@ const mapDispatch = (dispatch) => {
   return {
     //Add all of the initial thunks in here
     //(Tells the thunks to fire and populate the intial store upon site load)
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
       dispatch(fetchCategories())
       dispatch(fetchProducts())

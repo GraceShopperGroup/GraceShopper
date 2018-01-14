@@ -4,13 +4,13 @@
  * having to figure out which file they belong to!
  */
 
-export {default as Main} from './main'
-export {SideBar} from './sidebar'
+export { default as Main } from './main'
+export { SideBar } from './sidebar'
 import HomePage from './allproducts'
-export {HomePage}
-export {default as UserHome} from './user-home'
-export {Login, Signup} from './auth-form'
+export { HomePage }
+export { default as UserHome } from './user-home'
+export { Login, Signup } from './auth-form'
 import SingleProduct from './singleProduct'
-export {SingleProduct}
+export { SingleProduct }
 import Cart from './cart'
-export {Cart}
+export { Cart }
