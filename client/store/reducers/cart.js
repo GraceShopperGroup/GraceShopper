@@ -4,6 +4,7 @@ import axios from 'axios';
 //ACTION TYPE
 const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_ITEM = 'REMOVE_ITEM';
 
 
 // //ACTION CREATOR
@@ -21,6 +22,10 @@ export function addToCart(cart) {
     cart
   }
   return action
+}
+
+export function removeFromCart(cart) {
+  return { type: REMOVE_ITEM, cart };
 }
 
 // //THUNK CREATOR
@@ -50,6 +55,15 @@ export function postCart (item) {
   }
 }
 
+export function removeItem (id) {
+  return function thunk(dispatch) {
+    return axios.delete('/api/cart', id)
+    .then(res => res.data)
+    .then(newCart => dispatch(removeFromCart(newCart)))
+    .catch(err => console.log(err))
+  }
+}
+
 // //REDUCER
 // Never directly mutate the state, always copy old data
 export default function reducer (state = {}, action) {
@@ -58,6 +72,8 @@ export default function reducer (state = {}, action) {
       return action.cart
     case ADD_TO_CART:
       return action.cart
+    case REMOVE_ITEM:
+      return action.cart;
     default:
       return state;
   }
