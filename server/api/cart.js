@@ -11,7 +11,15 @@ router.post('/', (req, res, next) => {
     product.quantity = 1
     req.session.cart[product.id] = product;
   }
-  else req.session.cart[product.id].quantity++
+  else req.session.cart[product.id].quantity++;
+
+  res.json(req.session.cart);
+})
+
+router.delete('/', (req, res, next) => {
+  let id = req.body.id;
+  req.session.cart[id].quantity--;
+  if (req.session.cart[id].quantity === 0) delete req.session.cart[id];
 
   res.json(req.session.cart);
 })
