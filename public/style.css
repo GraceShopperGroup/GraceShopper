@@ -23,8 +23,18 @@ div {
 }
 
 main {
-  padding-top: 80px;
-  margin-left: 17%;
+  padding-top: 90px;
+  margin-left: 18%;
+}
+
+@media(max-width: 800px){
+  main {
+    margin-left: 25%;
+  }
+}
+
+.row {
+  padding-right:2%;
 }
 
 main .page-header {
@@ -39,6 +49,23 @@ main .page-header {
 .placeholders {
   margin-bottom: 30px;
   text-align: center;
+}
+
+#prod-img {
+  width: 70%;
+  float: left;
+}
+
+#prod-info {
+   float: left;
+   margin-left: -10%;
+}
+
+@media(max-width: 800px){
+  #prod-info {
+    width: 100%;
+    margin:3%;
+  }
 }
 
 .heading-main {

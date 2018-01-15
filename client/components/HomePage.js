@@ -13,7 +13,7 @@ const HomePage = (props) => {
             return (
               <div key={product.id} className="col-xs-6 col-sm-3 placeholder">
                 <NavLink to={`/products/${product.id}`}>
-                  <img key={product.id} src={product.imgUrl} height="200" width="250" />
+                  <img key={product.id} src={product.imgUrl} width="100%" />
                   <h4>{product.name}</h4>
                   <div className="text-muted">{product.description}</div>
                 </NavLink>
