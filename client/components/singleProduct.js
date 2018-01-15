@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { postCart } from '../store'
 
-function SingleProduct(props) {
+const SingleProduct = (props) => {
   const { product, addToCart } = props;
   return (product) ?
     (
@@ -33,12 +33,8 @@ const mapStateToProps = function (state, ownProps) {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    addToCart(prod) {
-      dispatch(postCart(prod))
-    }
-  }
+const mapDispatchToProps = {
+  addToCart: postCart
 }
 
 const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

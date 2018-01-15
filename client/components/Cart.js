@@ -32,12 +32,8 @@ const mapStateToProps = function (state) {
   };
 }
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    removeFromCart(id) {
-      dispatch(removeItem(id))
-    }
-  }
+const mapDispatchToProps = {
+  removeFromCart: removeItem
 }
 
 

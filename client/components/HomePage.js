@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 
-function HomePage(props) {
-  //Don't forget if/else logic to check if a user is an admin
-  //If they are the view should also include a button to add a new product
-  // We should have a component AddProductPage
+const HomePage = (props) => {
+
   return (
     <div>
       <h1 className="page-header">Products</h1>
