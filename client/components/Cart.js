@@ -7,7 +7,9 @@ const Cart = (props) => {
   const { cart, removeFromCart } = props;
   return (
     <div>
-      <h6>Cart</h6>
+      <div className="header-title">
+        <h2 className="heading-main">Shopping Cart</h2>
+      </div>
       <ul>
         {
           Object.keys(cart).map((id) => {

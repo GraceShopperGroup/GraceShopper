@@ -40,3 +40,10 @@ main .page-header {
   margin-bottom: 30px;
   text-align: center;
 }
+
+.heading-main {
+  text-transform: uppercase;
+  letter-spacing: 0.0623em;
+  font-size: 49px;
+  font-weight: 400px;
+}
