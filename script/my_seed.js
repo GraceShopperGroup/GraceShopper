@@ -44,7 +44,7 @@ var sneakers = ['Adidas', 'Nike', 'Converse', 'Puma', 'Yeezy',
 function randProduct() {
   return Product.build({
     name: sneakers.pop(),
-    price: chance.integer({ min: 0, max: 1000 }),
+    price: chance.floating({ min: 0, max: 200, fixed: 2 }),
     description: randName(),
     inventoryQuant: chance.integer({ min: 0, max: 10 }),
     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Black_Converse_sneakers.JPG/1200px-Black_Converse_sneakers.JPG",

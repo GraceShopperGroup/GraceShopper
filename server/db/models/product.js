@@ -14,7 +14,7 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false,
     get() {
-      return 100 * this.getDataValue('price');
+      return (0.01 * this.getDataValue('price')).toFixed(2);
     },
     set(val) {
       this.setDataValue('price', val * 100)
