@@ -15,8 +15,8 @@ export function fetchOrders() {
     return axios.get('/api/orders')
       .then(res => res.data)
       .then(orders => {
-        const action = getCategories(orders)
-        return dispatch(orders);
+        const action = getOrders(orders)
+        return dispatch(action);
       })
   }
 }
