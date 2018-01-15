@@ -9,7 +9,7 @@ import { Main, Login, Signup, UserHome, HomePage, SingleProduct, Cart } from './
 
 
 //Important! Import all thunks here
-import { me, fetchCategories, fetchProducts, fetchCart } from './store'
+import { me, fetchCategories, fetchProducts, fetchCart, fetchOrders } from './store'
 
 /**
  * COMPONENT
@@ -67,6 +67,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCategories())
       dispatch(fetchProducts())
       dispatch(fetchCart())
+      dispatch(fetchOrders())
     }
   }
 }
