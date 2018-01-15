@@ -21,8 +21,9 @@ const UserHome = (props) => {
                 order.products.map(product => {
                   return (
                     <div key={product.id}>
+                      <div> {product.name} </div>
                       <img src={product.imgUrl} width="100%" />
-                      <div className="text-muted">{product.priceAtPurchase}</div>
+                      <div>Price: {product.order_product.priceAtPurchase} Quantity: {product.order_product.quantity}</div>
                     </div>
                   )
                 })
