@@ -12,29 +12,32 @@ router.post('/', (req, res, next) => {
         Product.create(req.body)
             .then(product => res.status(201).json(product))
             .catch(next)
-    else next(err)
+    else next()
 })
 
 router.get('/:id', (req, res, next) => {
     Product.findById(req.params.id, { include: [Review] })
-        .then(product => res.json(product))
+        .then(product => {
+            if (!product) res.status(404).end()
+            else res.json(product)
+        })
         .catch(next)
 });
 
 router.put('/:id', (req, res, next) => {
-    if (req.user.isAdmin)
+    if (req.user && req.user.isAdmin)
         Product.update(req.body)
             .then(product => res.json(product))
             .catch(next)
-    else next(err)
+    else next()
 })
 
 router.delete('/:id', (req, res, next) => {
-    if (req.user.isAdmin)
+    if (req.user && req.user.isAdmin)
         Product.destroy({ where: { id: req.params.id } })
             .then(() => req.status(204))
             .catch(next)
-    else next(err)
+    else next()
 })
 
 module.exports = router;
