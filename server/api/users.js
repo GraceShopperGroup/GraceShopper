@@ -22,9 +22,11 @@ router.post('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   if (req.user && req.user.id === req.params.id)
     User.findById(req.params.id, { include: [Order] })
-      .then(user => res.json(user))
+      .then(user => {
+        if (!user) res.status(404).end();
+        else res.json(user)
+      })
       .catch(next);
-  else next(err);
+  else next();
 });
-
 
