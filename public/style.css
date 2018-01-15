@@ -1,3 +1,7 @@
+div {
+  display: block;
+}
+
 .navbar-nav {
   margin-top: 10px;
 }
@@ -16,4 +20,23 @@
   overflow-x: hidden;
   overflow-y: auto;
   border-right: 1px solid #eee;
+}
+
+main {
+  padding-top: 80px;
+  margin-left: 17%;
+}
+
+main .page-header {
+  margin-top: 0;
+}
+
+.page-header {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #080808;
+}
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
 }

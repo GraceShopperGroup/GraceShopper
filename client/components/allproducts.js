@@ -8,14 +8,14 @@ function HomePage(props) {
   // We should have a component AddProductPage
   return (
     <div>
-      <h1>Products</h1>
+      <h1 className="page-header">Products</h1>
       <section className="row text-center placeholders">
         {
           props.products.map(product => {
             return (
-              <div key={product.id} className="col-6 col-sm-3 placeholder">
+              <div key={product.id} className="col-xs-6 col-sm-3 placeholder">
                 <NavLink to={`/products/${product.id}`}>
-                  <img key={product.id} src={product.imgUrl} height="200" width="260" />
+                  <img key={product.id} src={product.imgUrl} height="200" width="250" />
                   <h4>{product.name}</h4>
                   <div className="text-muted">{product.description}</div>
                 </NavLink>
