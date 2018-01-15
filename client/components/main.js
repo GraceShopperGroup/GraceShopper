@@ -25,10 +25,10 @@ const Main = (props) => {
               ? <ul className="navbar-nav mr-auto">
                 {/* The navbar will show these links after you log in */}
                 <li className="nav-item">
-                  <Link to="/home" classNmae="nav-link">Home</Link>
+                  <Link to="/home" className="nav-link">Home</Link>
                 </li>
                 <li>
-                  <a href="#" classNmae="nav-link" onClick={handleClick}>Logout</a>
+                  <a href="#" className="nav-link" onClick={handleClick}>Logout</a>
                 </li>
               </ul>
               : <ul className="navbar-nav mr-auto">
