@@ -9,18 +9,21 @@ const SingleProduct = (props) => {
       <div>
         {
           <div key="spContainerDiv">
-            <img key={product.id} src={product.imgUrl} />
-            <h6>{product.name}</h6>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-            <p>{product.inventoryQuant}</p>
-
-            {/* Make the ability to add things to cart */}
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <div id="prod-img">
+              <img key={product.id} src={product.imgUrl} width="80%" />
+            </div>
+            <div id="prod-info">
+              <h4>{product.name}</h4>
+              <p>Description: {product.description}</p>
+              <p>Price: ${product.price}</p>
+              <p>{product.inventoryQuant} left</p>
+              {/* Make the ability to add things to cart */}
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
+            </div>
             {/* ****** */}
           </div>
         }
-      </div>
+      </div >
     ) :
     (<div> </div>)
 }
