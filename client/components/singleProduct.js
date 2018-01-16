@@ -18,7 +18,7 @@ const SingleProduct = (props) => {
               <p>Price: ${product.price}</p>
               <p>{product.inventoryQuant} left</p>
               {/* Make the ability to add things to cart */}
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              <button disabled={product.inventoryQuant === 0} onClick={() => addToCart(product)}>Add to Cart</button>
             </div>
             {/* ****** */}
           </div>
