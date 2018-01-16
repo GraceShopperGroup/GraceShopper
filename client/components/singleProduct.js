@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { postCart, postReviews } from '../store'
+import { postCart, postReviews} from '../store'
 
 const SingleProduct = (props) => {
   const { product, addToCart, addReview, isLoggedIn, handleSubmit, userId, reviews} = props;
@@ -27,7 +27,7 @@ const SingleProduct = (props) => {
                 reviews.map(review => {
                   return (
                     <div key={review.id}>
-                      <h4>{review.user.email}</h4>
+                      <h4>Review</h4>
                        <p>{review.content}</p>
                     </div>
                   )
