@@ -5,6 +5,7 @@ import axios from 'axios';
 const GET_CART = 'GET_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_ITEM = 'REMOVE_ITEM';
+const CLEAR_CART = 'CLEAR_CART';
 
 
 // //ACTION CREATOR
@@ -27,6 +28,8 @@ export function addToCart(cart) {
 export function removeFromCart(cart) {
   return { type: REMOVE_ITEM, cart };
 }
+
+export function clearCart() { return { type: CLEAR_CART } }
 
 // //THUNK CREATOR
 
@@ -76,6 +79,8 @@ export default function reducer (state = {}, action) {
       return action.cart
     case REMOVE_ITEM:
       return action.cart;
+    case CLEAR_CART:
+      return {}
     default:
       return state;
   }

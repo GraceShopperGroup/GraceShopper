@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeItem, makeOrder } from '../store'
+import { removeItem, makeOrder, clearCart } from '../store'
 
 //Stateless Component
 const Cart = (props) => {
@@ -62,9 +62,16 @@ const mapStateToProps = function (state) {
   };
 }
 
-const mapDispatchToProps = {
-  removeFromCart: removeItem,
-  checkout: makeOrder
+const mapDispatchToProps = function (dispatch) {
+  return ({
+    removeFromCart() {
+      dispatch(removeItem)
+    },
+    checkout() {
+      dispatch(makeOrder)
+      dispatch(clearCart)
+    }
+  })
 }
 
 

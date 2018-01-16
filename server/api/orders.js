@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Product, Order, OrderProduct } = require('../db/models');
+const { User, Product, Order } = require('../db/models');
 
 router.get('/', (req, res, next) => {
   if (req.user && req.user.id) {
@@ -37,6 +37,7 @@ router.post('/', (req, res, next) => {
   } else {
     res.status(404);
   }
+  req.session.cart = {};
 })
 
 module.exports = router;
