@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter, NavLink } from 'react-router-dom'
 
 //Stateless Component
 const SideBar = (props) => {
@@ -9,7 +10,9 @@ const SideBar = (props) => {
       <ul className="nav nav-pills flex-column">
         {props.categories.map((category) => {
           return (
-            <li key={category.id} className="nav-item">{category.name}</li>
+            <NavLink key={category.id} to={`/categories/${category.id}`}>
+              <li className="nav-item">{category.name}</li>
+            </NavLink>
           )
         })
         }
@@ -27,5 +30,5 @@ const mapStateToProps = function (state) {
 }
 
 
-const SideBarContainer = connect(mapStateToProps)(SideBar)
+const SideBarContainer = withRouter(connect(mapStateToProps)(SideBar))
 export default SideBarContainer

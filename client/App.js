@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import history from './history'
 
 //Import Components
-import { Main, Login, Signup, UserHome, HomePage, SingleProduct, Cart } from './components'
+import { Main, Login, Signup, UserHome, HomePage, SingleProduct, SingleCategory, Cart } from './components'
 
 
 //Important! Import all thunks here
@@ -27,6 +27,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are available to all visitors */}
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/categories/:categoryId" component={SingleCategory} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/cart" component={Cart} />
