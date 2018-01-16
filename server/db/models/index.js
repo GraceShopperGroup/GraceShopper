@@ -35,6 +35,9 @@ Product.belongsToMany(Order, { through: OrderProduct })
 Category.belongsToMany(Product, { through: ProductCategory })
 Product.belongsToMany(Category, { through: ProductCategory })
 
+Product.belongsToMany(User, {through: Review} )
+User.belongsToMany(Product, {through: Review} )
+
 module.exports = {
   User,
   Product,

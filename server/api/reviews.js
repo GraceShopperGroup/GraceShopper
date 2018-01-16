@@ -3,7 +3,7 @@ const { Review} = require('../db/models');
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Review.findAll({})
+  Review.findAll({include: [{all: true}]})
   .then(reviews => res.json(reviews))
   .catch(next)
 })
