@@ -68,9 +68,59 @@ main .page-header {
   }
 }
 
+.header-title {
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .heading-main {
   text-transform: uppercase;
   letter-spacing: 0.0623em;
-  font-size: 49px;
+  font-size: 32px;
   font-weight: 500;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.cart-row {
+  padding-top: 0;
+  margin-top: 0;
+  position: relative;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.cart-table th {
+  padding: 30px 15px;
+  border: none;
+  font-weight: normal;
+}
+
+.cart-product {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+}
+
+#tfooter {
+  margin: 4% 10%;
+  float: right;
 }
