@@ -28,7 +28,10 @@ export function makeOrder() {
   return function thunk(dispatch) {
     return axios.post('/api/orders')
       .then(res => res.data)
-      .then(order => dispatch(postOrder(order)))
+      .then(order => {
+        dispatch(postOrder(order))
+      })
+      .catch(err => console.log(err))
   }
 }
 

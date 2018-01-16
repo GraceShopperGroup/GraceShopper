@@ -16,10 +16,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if (req.user && req.user.id && req.session.cart) {
-    Order.create({
-      where: {
-        userId: req.user.id
-      }
+    Order.create({ 
+      userId: req.user.id
     })
       .then(order => {
         Object.keys(req.session.cart).forEach(prod => {
