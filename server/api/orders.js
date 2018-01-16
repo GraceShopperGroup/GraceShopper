@@ -16,20 +16,22 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if (req.user && req.user.id && req.session.cart) {
-    Order.create()
+    Order.create({
+      where: {
+        userId: req.user.id
+      }
+    })
       .then(order => {
-        let orderProducts = [];
         Object.keys(req.session.cart).forEach(prod => {
-          orderProducts.push({
-            orderId: order.id,
-            productId: req.session.cart[prod].id,
-            quantity: req.session.cart[prod].quantity,
-            priceAtPurchase: req.session.cart[prod].price
-          })
+          order.addProduct(req.session.cart[prod].id)
+            .then(orderProd => {
+              orderProd[0][0].update({
+                priceAtPurchase: req.session.cart[prod].price,
+                quantity: req.session.cart[prod].quantity
+              })
+            })
         })
-        order.setUser(req.user.id);
-        return OrderProduct.create(orderProducts)
-            .then(() => res.json(order))
+        res.json(order);
       })
       .catch(next)
   } else {
