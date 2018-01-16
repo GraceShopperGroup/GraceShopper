@@ -27,8 +27,9 @@ router.post('/', (req, res, next) => {
             priceAtPurchase: req.session.cart[prod].price
           })
         })
+        order.setUser(req.user.id);
         return OrderProduct.create(orderProducts)
-                .then(() => res.json(order))
+            .then(() => res.json(order))
       })
       .catch(next)
   } else {
