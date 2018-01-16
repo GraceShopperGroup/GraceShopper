@@ -22,15 +22,15 @@ router.post('/', (req, res, next) => {
         Object.keys(req.session.cart).forEach(prod => {
           orderProducts.push({
             orderId: order.id,
-            productId: prod.id,
-            quantity: prod.quantity,
-            priceAtPurchase: prod.price
+            productId: req.session.cart[prod].id,
+            quantity: req.session.cart[prod].quantity,
+            priceAtPurchase: req.session.cart[prod].price
           })
         })
         return OrderProduct.create(orderProducts)
+                .then(() => res.json(order))
       })
-      .then((orderProducts) => res.json(orderProducts))
-      .catch(err => console.log(err))
+      .catch(next)
   } else {
     res.status(404);
   }

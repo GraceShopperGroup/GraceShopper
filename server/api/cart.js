@@ -11,8 +11,9 @@ router.post('/', (req, res, next) => {
     product.quantity = 1
     req.session.cart[product.id] = product;
   }
-  else req.session.cart[product.id].quantity++;
-
+  else {
+    req.session.cart[product.id].quantity++;
+  }
   res.json(req.session.cart);
 })
 
