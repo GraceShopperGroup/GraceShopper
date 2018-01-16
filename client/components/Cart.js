@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeItem } from '../store'
+import { removeItem, makeOrder } from '../store'
 
 //Stateless Component
 const Cart = (props) => {
-  const { cart, removeFromCart } = props;
+  const { cart, removeFromCart, checkout } = props;
   let total = 0;
   return (
     <div>
@@ -48,6 +48,7 @@ const Cart = (props) => {
         <h4>
           TOTAL: ${total.toFixed(2)}
         </h4>
+        <button onClick={() => checkout()} > Checkout </button>
       </div>
     </div>
   )
@@ -62,7 +63,8 @@ const mapStateToProps = function (state) {
 }
 
 const mapDispatchToProps = {
-  removeFromCart: removeItem
+  removeFromCart: removeItem,
+  checkout: makeOrder
 }
 
 
