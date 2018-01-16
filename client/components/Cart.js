@@ -68,8 +68,8 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(removeItem)
     },
     checkout() {
-      dispatch(makeOrder)
-      dispatch(clearCart)
+      dispatch(makeOrder())
+      dispatch(clearCart())
     }
   })
 }
