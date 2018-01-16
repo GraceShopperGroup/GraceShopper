@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { postCart } from '../store'
 
 const SingleProduct = (props) => {
-  const { product, addToCart} = props;
+  const { product, addToCart } = props;
   return (product) ?
     (
-    <div>
+      <div>
         {
           <div key="spContainerDiv">
             <div id="prod-img">
@@ -20,13 +20,13 @@ const SingleProduct = (props) => {
               {/* Make the ability to add things to cart */}
               <button disabled={product.inventoryQuant === 0} onClick={() => addToCart(product)}>Add to Cart</button>
             </div>
-            <div id= "reviewsContainer">
+            <div id="reviews">
+              <h1 className="page-header">Customer Reviews</h1>
               {
                 product.users.map(user => {
                   return (
                     <div key={user.id}>
-                      <h4>{user.email}</h4>
-                      <p>{user.review.content}</p>
+                      <p><b>{user.email}</b>: {user.review.content}</p>
                     </div>
                   )
                 })
@@ -34,7 +34,7 @@ const SingleProduct = (props) => {
             </div>
           </div>
         }
-    </div >
+      </div >
     ) :
     (<div />)
 }
