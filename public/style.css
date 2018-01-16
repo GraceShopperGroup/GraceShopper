@@ -124,3 +124,30 @@ tbody {
   margin: 4% 10%;
   float: right;
 }
+
+#reviews {
+  top: 500px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#reviews {
+  text-align: center;
+}
+
+#spContainer{
+  position: relative;
+}
+
+@media(max-width: 600px){
+  #reviews {
+    margin-top: -15%;
+  }
+}
+
+ @media(max-width: 450px){
+  #reviews {
+    margin-top: -100px;
+  }
+} 
