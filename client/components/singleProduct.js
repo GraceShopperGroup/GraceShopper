@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { postCart, postReviews} from '../store'
+import { postCart, postReviews } from '../store'
 
 const SingleProduct = (props) => {
-  const { product, addToCart, addReview, isLoggedIn, handleSubmit, userId, reviews} = props;
+  const { product, addToCart, addReview, isLoggedIn, handleSubmit, userId, reviews } = props;
   return (product) ?
     (
       <div>
@@ -25,19 +25,19 @@ const SingleProduct = (props) => {
               <h1 className="page-header">Customer Reviews</h1>
               {
                 reviews ?
-                reviews.map(review => {
-                  return (
-                    <div key={review.id}>
-                      <h4>Review</h4>
-                       <p>{review.content}</p>
-                    </div>
-                  )
-                })
-                :
-                <div />
+                  reviews.map(review => {
+                    return (
+                      <div key={review.id}>
+                        <h4>Review</h4>
+                        <p>{review.content}</p>
+                      </div>
+                    )
+                  })
+                  :
+                  <div />
               }
             </div>
-            { isLoggedIn ?
+            {isLoggedIn ?
               <div>
                 <form id="review_to_add" onSubmit={(event) => handleSubmit(event, userId)}>
                   <input name="newReview" type="text" placeholder="Add a new review..." />
@@ -59,14 +59,12 @@ const mapStateToProps = function (state, ownProps) {
     product: state.products.find(prod => prod.id === +ownProps.match.params.productId),
     isLoggedIn: !!state.user.id,
     userId: state.user.id,
-    addToCart: postCart,
     reviews: state.reviews.filter(review => review.productId === +ownProps.match.params.productId),
     addReview: postReviews
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log()
   return {
     handleSubmit(event, userId) {
       event.preventDefault();
@@ -78,7 +76,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
       dispatch(postReviews(newReview));
       form.reset();
-    }
+    },
+    addToCart(prod) {
+      dispatch(postCart(prod))
+    },
   }
 }
 
