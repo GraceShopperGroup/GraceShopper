@@ -39,9 +39,9 @@ const Cart = (props) => {
                     {cart[id].quantity}
                   </td>
                 </tr>
-                )
-              })
-            }
+              )
+            })
+          }
         </tbody>
       </table>
       <div id="tfooter">
@@ -64,8 +64,8 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return ({
-    removeFromCart() {
-      dispatch(removeItem)
+    removeFromCart(id) {
+      dispatch(removeItem(id))
     },
     checkout() {
       dispatch(makeOrder())

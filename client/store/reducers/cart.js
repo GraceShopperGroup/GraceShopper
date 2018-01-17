@@ -33,45 +33,45 @@ export function clearCart() { return { type: CLEAR_CART } }
 
 // //THUNK CREATOR
 
-export function fetchCart () {
+export function fetchCart() {
   return function thunk(dispatch) {
     //Check to see if the API path is correct
     return axios.get('/api/cart')
-    .then(res => res.data)
-    .then(cart => {
-      const action = getCart(cart)
-      return dispatch(action);
-    })
+      .then(res => res.data)
+      .then(cart => {
+        const action = getCart(cart)
+        return dispatch(action);
+      })
   }
 }
 
-export function postCart (item) {
+export function postCart(item) {
   return function thunk(dispatch) {
     //Check to see if the API path is correct
     return axios.post('/api/cart', item)
-    .then(res => res.data)
-    .then(newCart => {
-      const action = addToCart(newCart)
-      return dispatch(action);
-    })
-    .catch(err => console.log(err))
+      .then(res => res.data)
+      .then(newCart => {
+        const action = addToCart(newCart)
+        return dispatch(action);
+      })
+      .catch(err => console.log(err))
   }
 }
 
-export function removeItem (id) {
+export function removeItem(id) {
   return function thunk(dispatch) {
     return axios.delete('/api/cart', {
       data: { id }
     })
-    .then(res => res.data)
-    .then(newCart => dispatch(removeFromCart(newCart)))
-    .catch(err => console.log(err))
+      .then(res => res.data)
+      .then(newCart => dispatch(removeFromCart(newCart)))
+      .catch(err => console.log(err))
   }
 }
 
 // //REDUCER
 // Never directly mutate the state, always copy old data
-export default function reducer (state = {}, action) {
+export default function reducer(state = {}, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
