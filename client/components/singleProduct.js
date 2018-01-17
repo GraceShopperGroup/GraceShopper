@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { postCart } from '../store'
+import { withRouter } from 'react-router-dom'
+import { postCart, postReviews} from '../store'
 
 const SingleProduct = (props) => {
-  const { product, addToCart } = props;
+  const { product, addToCart, addReview, isLoggedIn, handleSubmit, userId, reviews} = props;
   return (product) ?
     (
       <div>
@@ -23,15 +24,27 @@ const SingleProduct = (props) => {
             <div id="reviews">
               <h1 className="page-header">Customer Reviews</h1>
               {
-                product.users.map(user => {
+                reviews ?
+                reviews.map(review => {
                   return (
-                    <div key={user.id}>
-                      <p><b>{user.email}</b>: {user.review.content}</p>
+                    <div key={review.id}>
+                      <h4>Review</h4>
+                       <p>{review.content}</p>
                     </div>
                   )
                 })
+                :
+                <div />
               }
             </div>
+            { isLoggedIn ?
+              <div>
+                <form id="review_to_add" onSubmit={(event) => handleSubmit(event, userId)}>
+                  <input name="newReview" type="text" placeholder="Add a new review..." />
+                  <button>Submit</button>
+                </form>
+              </div>
+              : <div />}
           </div>
         }
       </div >
@@ -44,11 +57,29 @@ const SingleProduct = (props) => {
 const mapStateToProps = function (state, ownProps) {
   return {
     product: state.products.find(prod => prod.id === +ownProps.match.params.productId),
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id,
+    addToCart: postCart,
+    reviews: state.reviews.filter(review => review.productId === +ownProps.match.params.productId),
+    addReview: postReviews
   }
 }
 
-const mapDispatchToProps = {
-  addToCart: postCart
+const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log()
+  return {
+    handleSubmit(event, userId) {
+      event.preventDefault();
+      const form = document.getElementById('review_to_add')
+      const newReview = {
+        content: event.target.newReview.value,
+        productId: ownProps.match.params.productId,
+        userId
+      }
+      dispatch(postReviews(newReview));
+      form.reset();
+    }
+  }
 }
 
 const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
